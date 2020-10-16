@@ -1,0 +1,55 @@
+.btn-author{
+    color: #adfff4;
+    margin-right: 10px;
+    background-color: #514bad;
+    font-weight: bold;
+}
+
+.btn-category{
+    color: #adfff4;
+    margin-right: 10px;
+    background-color: #514bad;
+    font-weight: bold;
+}
+
+.btn-editauthor{
+    color: #adfff4;
+    margin-right: 10px;
+    background-color: #6e7730;
+    font-weight: bold;
+}
+
+.btn-editcategory{
+    color: #adfff4;
+    margin-right: 10px;
+    background-color: #6e7730;
+    font-weight: bold;
+}
+
+
+.btn-book{
+    color: #adfff4;
+    background-color: #514bad;
+    font-weight: bold;
+}
+
+.btn-author:hover{
+    color: white;
+    background-color: blue;
+}
+.btn-category:hover{
+    color: white;
+    background-color: blue;
+}
+.btn-book:hover{
+    color: white;
+    background-color: blue;
+}
+
+.modal-footer button{
+    font-weight: bold;
+}
+
+tbody tr{
+    border-style: hidden;
+}
