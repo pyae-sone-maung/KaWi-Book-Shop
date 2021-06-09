@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Admin</title>
+
+        <script type="text/javascript" src="../js/jquery.js"></script>
+
+        <script type="text/javascript" src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+
+        <script src="../dataTables/Tables/js/jquery.dataTables.min.js"> </script>
+        <script src="../dataTables/Tables/js/dataTables.bootstrap4.min.js"> </script>
+
+        <link href="../css/styles.css" rel="stylesheet" />
+        <link href="../dataTables/Tables/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js" crossorigin="anonymous"></script>
+
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html">KaWi Book Shop </a>
+            <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#">Activity Log</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="login.html">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <a class="nav-link" href="index.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading"> Book Data Entry and List</div>
+                            <a class="nav-link" href="tables.html" id="book-list-table">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                                Books
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">Customer Information</div>
+                            <a class="nav-link" href="userinfo.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                Customers
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">Delivred History</div>
+                            <a class="nav-link" href="delivered.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
+                                Delivered History
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small"> Copyright © Your Website 2020 </div>
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h1 class="mt-4">Dashboard</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body" id="new-order">New Orders</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="index.html">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-info text-white mb-4">
+                                    <div class="card-body" id="total-customer"> </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="userinfo.html">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-info text-white mb-4">
+                                    <div class="card-body" id="less-books"> </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" onclick="lessBooks()">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+                        <br>
+                        <h1> <strong> Books Order List </strong> </h1>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                Order Table
+                            </div>
+
+                            <body onload ="loadOrderData()">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order ID</th>
+                                                    <th>Customer Name</th>
+                                                    <th>Book Name</th>
+                                                    <th>Phone</th>
+                                                    <th>Address</th>
+                                                    <th>Date</th>
+                                                    <th id="status">Status</th>
+                                                    <th>Quantity</th>
+                                                    <th>Unit Price (Ks)</th>
+                                                    <th> Total (+Tax) </th>
+                                                    <th width="12%"></th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </body>
+
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- Order Cancel Dialog -->
+        <div class="container">
+            <div class="modal fade" id="orderCancelModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"><strong>Order Cancel</strong></h4>
+                        </div>
+                        <div class="modal-body">
+                            <p> <strong>Are you sure cancel this order?</strong> </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-warning btn-md" onclick="orderDeleteNo()"> NO </button>
+                            <button id="order-delete" class="btn btn-danger btn-md"> YES </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Confirm Dialog -->
+        <div class="container">
+            <div class="modal fade" id="orderConfirmModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"><strong>Order Confirm</strong></h4>
+                        </div>
+                        <div class="modal-body">
+                            <p> <strong>Are you sure confirm this order?</strong> </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-warning btn-md" onclick="orderConfirmNo()"> NO </button>
+                            <button id="order-confirm" class="btn btn-primary btn-md"> YES </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Less Books than 10 -->
+        <div class="container">
+            <div class="modal fade" id="lessBooksModalss" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="justify-content: center;">
+                            <h4 class="modal-title"> <strong>Books Name</strong> </h4>
+                        </div>
+                        <div class="modal-body" id="less-book-name">
+                        </div>
+                        <div class="modal-footer" style="justify-content: center;">
+                            <button id="order-confirm" class="btn btn-primary btn-md" data-dismiss="modal"> OK </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../js/scripts.js"></script>
+        <script src="../js/dashboard.js"></script>
+    </body>
+</html>

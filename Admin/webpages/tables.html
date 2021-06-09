@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Books</title>
+
+        <script type="text/javascript" src="../js/jquery.js"></script>
+        <script type="text/javascript" src="../js/main/jquery-confirm.min.js"></script>
+        <script type="text/javascript" src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <script src="../dataTables/Tables/js/jquery.dataTables.min.js"> </script>
+        <script src="../dataTables/Tables/js/dataTables.bootstrap4.min.js"> </script>
+
+        <link href="../css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../bootstrap/css/jquery-confirm.min.css">
+        <link href="../dataTables/Tables/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/main/jquery-confirm.min.css">
+        <link rel="stylesheet" href="../css/book_table.css">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html">KaWi Book Shop</a>
+            <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#">Activity Log</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="login.html">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <a class="nav-link" href="index.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading"> Book Data Entry and List</div>
+                            <a class="nav-link" href="tables.html" id="booklisttable">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                                Books
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">Customer Information</div>
+                            <a class="nav-link" href="userinfo.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                Customers
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">Delivred History</div>
+                            <a class="nav-link" href="delivered.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
+                                Delivered History
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small"> Copyright © Your Website 2020 </div>
+                    </div>
+                </nav>
+            </div>
+
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h1 class="mt-4"> <strong> Books List </strong></h1>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                Total Books
+
+                                <div style="float: right;">
+                                    <button class="btn btn-author" data-toggle="modal" data-target="#addAuthorModal">
+                                         <i class="fas fa-user"></i>
+                                         Add New Author
+                                    </button>
+                                    <button class="btn btn-category" data-toggle="modal" data-target="#addCategoryModal">
+                                         <i class="fas fa-list-alt"></i>
+                                         Add New Category
+                                    </button>
+                                    <button class="btn btn-book">
+                                         <i class="fas fa-book"> </i>
+                                         Add New Book
+                                    </button>
+                                </div>
+                            </div>
+
+                            <body onload="dataTableLoad()">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="book-dataTable" width="100%" cellspacing="0">
+                                            <thead align="center">
+                                                <tr>
+                                                    <th>Book ID</th>
+                                                    <th>Book Cover</th>
+                                                    <th>Book name</th>
+                                                    <th>Author</th>
+                                                    <th>Category</th>
+                                                    <th>Descripton</th>
+                                                    <th>Publisher</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
+                                                    <th> </th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </body>
+
+                            <div class="card-footer">
+                                <div style="float: right;">
+                                    <button class="btn btn-editauthor" data-toggle="modal" data-target="#editAuthorModal">
+                                         <i class="fas fa-user"></i>
+                                         Edit Author
+                                    </button>
+                                    <button class="btn btn-editcategory" data-toggle="modal" data-target="#editCategoryModal">
+                                         <i class="fas fa-list-alt"></i>
+                                         Edit Category
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- For Add Book Dialog -->
+        <div class="container">
+            <div class="modal fade" id="addBookModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-name"> <strong> Add New Book </strong></h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form">
+                                <table class="table">
+                                    <tr>
+                                        <th><label>Book name</label></th>
+                                        <td><input type="text" class="form-control" id="add-book-name"></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label>Author</label></th>
+                                        <td>
+                                            <div class="form-group">
+                                                <select class="form-control" id="add-book-author-collection" required>
+                                                    <option> </option>
+                                                    <!-- Author Name -->
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th><label>Category</label></th>
+                                        <td>
+                                            <div class="form-group">
+                                                <select class="form-control" id="add-book-category-collection" required>
+                                                    <option> </option>
+                                                    <!-- Book Category List -->
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th><label>Desctiption</label></th>
+                                        <td> <textarea class="form-control" id="add-book-description" width="100px"> </textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label>Publisher</label></th>
+                                        <td><input type="text" class="form-control" id="add-book-publisher"></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label>Quantity</label></th>
+                                        <td><input type="number" min="0" class="form-control" id="add-book-quantity"></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label>Price</label></th>
+                                        <td><input type="number" min="500" class="form-control" id="add-book-price"></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label>Book Cover</label></th>
+                                        <td><input type="file" class="form-control" id="add-book-cover" required="false"></td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary btn-md" onclick="addNewBook();">Add Book</button>
+                            <button class="btn btn-warning btn-md" onclick="clearAddBookModal();">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- For Edit Book Dialog -->
+        <div class="modal fade" id="editBookModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-name"> <strong> Edit Book </strong> </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <table class="table">
+                                <tr>
+                                    <th><label> Book ID</label></th>
+                                    <td><input type="number" class="form-control" id="edit-book-id" readonly></td>
+                                </tr>
+                                <tr>
+                                    <th><label>Book name</label></th>
+                                    <td><input type="text" class="form-control" id="edit-book-name"></td>
+                                </tr>
+                                <tr>
+                                    <th><label>Author</label></th>
+                                    <td>
+                                        <div class="form-group">
+                                            <select class="form-control" id="edit-book-author-collection">
+                                                <!-- Edit author list -->
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label>Category</label></th>
+                                    <td>
+                                        <div class="form-group">
+                                            <select class="form-control" id="edit-book-category-collection" required>
+                                                <!-- Edit Category List -->
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label>Desctiption</label></th>
+                                    <td> <textarea class="form-control" id="edit-book-description" width="100px"> </textarea></td>
+                                </tr>
+                                <tr>
+                                    <th><label>Publisher</label></th>
+                                    <td><input type="text" class="form-control" id="edit-book-publisher"></td>
+                                </tr>
+                                <tr>
+                                    <th><label>Quantity</label></th>
+                                    <td><input type="number" min="0" class="form-control" id="edit-book-quantity"></td>
+                                </tr>
+                                <tr>
+                                    <th><label>Price</label></th>
+                                    <td><input type="number" min="500" class="form-control" id="edit-book-price"></td>
+                                </tr>
+                                <tr>
+                                    <th><label>Book Cover</label></th>
+                                    <td>
+                                        <img src="" height="50px" width="50px" id="book-cover">
+                                        <input type="file" class="form-control" id="edit-book-cover">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-md" onclick="SaveEditBook()">Save</button>
+                        <button type="button" class="btn btn-danger btn-md" onclick="DeleteBook()">Delete</button>
+                        <button type="button" class="btn btn-warning btn-md" onclick="cancelEditBookModal()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Author Dialog -->
+        <div class="modal fade" id="addAuthorModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-name"> <strong> Author Name </strong> </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <table class="table">
+                                <tr>
+                                    <th><label> Author Name:</label></th>
+                                    <td><input type="text" class="form-control" id="add-author" ></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-md" onclick="addAuthor()">Add Author</button>
+                        <button type="button" class="btn btn-warning btn-md" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Dialog -->
+        <div class="modal fade" id="addCategoryModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-name"> <strong> Category </strong> </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <table class="table">
+                                <tr>
+                                    <th><label> Category Name :</label></th>
+                                    <td><input type="text" class="form-control" id="add-category" ></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="modal-footer" >
+                        <button type="button" class="btn btn-primary btn-md" onclick="addCategory()">Add Category </button>
+                        <button type="button" class="btn btn-warning btn-md" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- For Edit Author -->
+    <div class="modal fade" id="editAuthorModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-name"> <strong> Select Author </strong> </h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <table class="table">
+                            <tr>
+                                <th><label> Select Name:</label></th>
+                                <td>
+                                    <select class="edit-author">
+                                        <!-- <option> Author Name</option> -->
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label> Author Name:</label></th>
+                                <td><input type="text" class="form-control" id="edit-author" ></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning btn-md" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-md" onclick="editAuthorSave()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- End Edit Author -->
+
+<!-- For Edit Category -->
+    <div class="modal fade" id="editCategoryModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-name"> <strong> Select Category </strong> </h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <table class="table">
+                            <tr>
+                                <th><label> Select Name:</label></th>
+                                <td>
+                                    <select class="edit-category">
+                                        <!-- <option> Category </option> -->
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label> Category Name:</label></th>
+                                <td><input type="text" class="form-control" id="edit-category" ></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning btn-md" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-md" onclick="editCategorySave()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- End Edit Category -->
+
+        <script src="../js/scripts.js"></script>
+        <script src="../js/book-table.js"></script>
+
+    </body>
+</html>
