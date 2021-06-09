@@ -1,0 +1,294 @@
+body{
+    overflow:auto;
+    margin: 0;
+}
+
+#page-head{
+    background-color: #ddfe38;
+    padding-bottom: 30px;
+}
+
+#page-name{
+    margin-top: 5px;
+    font-family:"Raleway";
+    font-size: 30px;
+    color: #08074a;
+    text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #9a6767,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+
+.search-bar{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.search-about{
+    color: #4e3bd1;
+    font-size: 18px;
+    margin-left: 40%;
+    margin-top: 15px;
+}
+
+.search-about #book-count{
+    color: green;
+    font-size: 17px;
+    margin-left: 3%;
+    margin-top: -19px;
+    margin-bottom: 15px;
+}
+
+.navbar{
+    padding: 15px;
+}
+
+#book-logo{
+    max-width: 22%;
+    border: 2px solid green;
+    border-radius: 5px;
+}
+
+#home{
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#home:hover, #dropdown-nav:hover{
+    color: blue;
+}
+
+.form-control{
+  border-radius: 25px;
+}
+
+.p-1{
+  border: 2px solid #d1d1c5;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+#home-navbar{
+    background-color: #92e8da;
+    width: 100.8%;
+}
+
+#home-navbar #kawi{
+    font-size: 25px;
+    color: #0e054a;
+    font-weight: bolder;
+    margin-left: 30%;
+    text-shadow: -1px 2px 1px blue;
+}
+
+#home-navbar #bshop{
+    color: #5E6164;
+    margin-top: -15px;
+    font-weight: bold;
+    margin-left: 40%;
+}
+
+#booksTableBody{
+    margin-left: 15%;
+    margin-top: 3%;
+    margin-right: 25%;
+    margin-bottom: 30px;
+}
+
+#bookdiv{
+    margin-bottom: 2%
+}
+
+#booksTableBody #no-books{
+    color: #4e3bd1;
+    font-size: 17px;
+    margin-bottom: 70px;
+    margin-left: 40%;
+}
+
+#showSearchResultBooks{
+    margin-left: 13%;
+    margin-top: 20px;
+    margin-right: 25%;
+    margin-bottom: 20px;
+}
+
+#dropdown-nav{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+#fake-link {
+    color: blue;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#book-name{
+    color: black;
+    font-size: 16px;
+}
+
+#book-cover{
+    width: 120px;
+    height: 150px;
+}
+
+#cart{
+    margin-top: 5px;
+}
+
+#cart-count{
+    margin-top: 2px;
+    font-size: 22px;
+    color: #091244;
+    margin-right: 2px;
+}
+
+#cart p{
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 5px;
+    cursor: default;
+}
+
+#user{
+    margin-top: 5px;
+    margin-left: 50px;
+    position: relative;
+}
+
+#user img{
+    width: 33px;
+    height: 33px;
+    border: 1.5px solid #91a298;
+    border-radius: 15px;
+}
+
+#user ul{
+    position: absolute;
+    margin-left: -30px;
+    padding: 0;
+    z-index: 2;
+    width: 150px;
+    border: 2px solid #B8F2E8;
+    border-radius: 2px;
+    background: #F8F9FA;
+
+}
+
+#user ul li{
+    list-style: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 28px;
+    font-size: 16px;
+    cursor: default;
+}
+
+#user ul #signin:hover, #signup:hover, #profile:hover, #logout:hover{
+    color: blue;
+}
+
+#user p{
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: -15px;
+    cursor: default;
+}
+
+#cart:hover, #user svg:hover, #user p:hover{
+    color: blue;
+}
+
+/* ==========> For Book Description <================*/
+.book-cover {
+      display: inline-block;
+      position: relative;
+}
+
+.book-cover img {
+    max-width: 40%;
+    border-radius: 9px 8px 8px 9px;
+    padding-top: 2px;
+    margin-right: 17%;
+    position: relative;
+    z-index: 1;
+}
+
+.book {
+    position: relative;
+}
+
+.price{
+    margin-right: 15%;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.add-to-cart{
+    border: 0;
+    padding: 6px 30px;
+    margin-right: 15%;
+    margin-bottom: 10%;
+    border-radius: 3px;
+    background-color: #F57224;
+    color: #fff5f5;
+    font-size: 20px;
+    font-weight: none;
+}
+
+.add-to-cart:hover{
+    background-color: #2b820e;
+}
+
+
+.book-title{
+    text-transform: UPPERCASE;
+    text-align: justify;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+#author{
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+#publisher{
+    text-align: justify;
+    margin-bottom: 40px;
+}
+
+.book-description{
+    font-size: 20px;
+    margin-bottom: 50px;
+    text-align: justify;
+}
+
+@media screen and (max-width: 768px) {
+.book-cover {
+    max-width: 60%;
+    }
+}
+
+/* Nav Bar Remain */
+.sticky{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title> Profile </title>
+        <script type="text/javascript" src="../js/main/jquery.js"> </script>
+        <script type="text/javascript" src="../js/main/jquery-confirm.min.js"></script>
+
+        <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="../css/main/jquery-confirm.min.css">
+        <link rel="stylesheet" href="../css/userprofile.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+<!-- For Navbar -->
+        <div class="row" id="home-navbar">
+            <div class="col-3">
+                <p id="kawi"> KaWi</p>
+                    <p id="bshop"> Book Shop <i class="fas fa-book-open"></i></p>
+            </div>
+            <div class="col-6">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <span class="navbar-brand" id="home" href="home.html"> KAWI HOME</span>
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> -->
+                        <!-- <span class="navbar-toggler-icon"></span> -->
+                    </button>
+                </nav>
+            </div>
+            <span id="cart-count"> 0 </span>
+            <div id="cart">
+                <i class="fas fa-cart-plus fa-2x"></i>
+                <p> Cart </p>
+            </div>
+            <div class ="dropdown" id="user">
+                <img src="" hidden>
+                <span> <i class="fas fa-user-circle fa-2x"> </i> </span>
+                <p> Account </p>
+                <ul style="display: none;">
+                    <li id="signin"> <i class="fas fa-sign-in-alt"></i> Login </li>
+                    <li id="signup"> <i class="fas fa-user-plus"></i> Sign Up </li>
+                    <li id="logout"> <i class="fas fa-sign-out-alt"></i> Logout </li>
+                </ul>
+            </div>
+        </div>
+<!-- End Navbar -->
+
+<!-- For Profile -->
+        <div class="container emp-profile">
+            <div class="profile-img">
+                <img src=""/>
+                <div class="profile-info">
+                    <h3> <!--customer data--> </h3>
+                    <h6> <!-- customer email --> </h6>
+                </div>
+                <br>
+                <button class="file btn btn-lg btn-primary" onclick="editAccount()">
+                    <i class="fas fa-user-edit"></i>
+                    Edit Account
+                </button>
+                <button class="file btn btn-lg btn-primary" onclick="changePassword()">
+                    <i class="fab fa-expeditedssl"></i>
+                    Change Password
+                </button>
+                <button class="file btn btn-lg btn-primary" id="your-books" onclick="viewYourPurchasedBooks()">
+                    <i class="fas fa-book"></i>
+                    Your Books
+                </button>
+            </div>
+
+            <div class="row"  id="purchased-books" hidden>
+                <div class="col-md-12">
+                    <br>
+                    <h5> <i class="fas fa-book-open"></i> <strong>Your Books </strong> </h5>
+                    <div class="history-tab">
+                        <br>
+                        <div class="row" id="purchased-books-info">
+                            <!-- your purchased books -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- For Edit Account -->
+    <div class="modal fade" id="editAccountModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:550px;">
+                <div class="modal-header">
+                    <h4 class="modal-name"> <strong> Edit Account Information </strong> </h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <table class="table">
+                            <tr>
+                                <th><label> ID :</label></th>
+                                <td><input type="number" class="form-control" id="edit-account-id" readonly></td>
+                            </tr>
+                            <tr>
+                                <th><label>Name :</label></th>
+                                <td><input type="text" class="form-control" id="edit-account-name"></td>
+                            </tr>
+                            <tr>
+                                <th><label>Email :</label></th>
+                                <td> <input type="email" class="form-control" id="edit-account-email"> </td>
+                            </tr>
+                            <tr>
+                                <th><label> Change Photo :</label></th>
+                                <td>
+                                    <img src="" height="50px" width="50px" id="profile-img">
+                                    <input type="file" class="form-control" id="edit-account-img">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning btn-md" onclick="cancelEditAccount()">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-md" onclick="saveEditAccount()">Save Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- For Password Changes -->
+    <div class="modal fade" id="changePasswordModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:550px;">
+                <div class="modal-header">
+                    <h4 class="modal-name"> <strong> Change Password </strong> </h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <table class="table">
+                            <tr>
+                                <th><label> Current Password :</label></th>
+                                <td><input type="password" class="form-control" id="current-password"></td>
+                            </tr>
+                            <tr>
+                                <th><label>New Password :</label></th>
+                                <td><input type="password" class="form-control" id="new-password"></td>
+                            </tr>
+                            <tr>
+                                <th><label>Confirm Password :</label></th>
+                                <td> <input type="password" class="form-control" id="confirm-password"> </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning btn-md" onclick="cancelChangePassword()">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-md" onclick="saveChangePassword()">Save Change</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- End Profile -->
+
+<!-- For Footer -->
+    <footer class="page-footer font-small mdb-color pt-4 text-white bg-dark">
+        <div class="container text-center text-md-left text-white bg-dark">
+            <div class="row text-center text-md-left mt-3 pb-3 text-white bg-dark">
+                <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Developed By:</h6>
+                    <p>
+                        <strong>
+                            <a href="https://beedatamyanmar.com/">
+                                BEE Data Myanmar Software Solution 2020 Internship Program
+                            </a>
+                        </strong>
+                    </p>
+                    <!-- <p>
+                        Mg Pyae Sone Maung UCS ( Sittway )
+                    </p>
+                    <p>
+                        Mg Phyoe Minn Khant UCS ( Monywa )
+                    </p>
+                    <p>
+                        Ma Hsu Minn Thwel UCS ( Taungoo )
+                    </p> -->
+                </div>
+
+                <hr class="w-100 clearfix d-md-none">
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                    <p>
+                        <i class="fas fa-home mr-3"></i> Hlaing Township, Yangon.
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope mr-3"></i> kawibookshop@gmail.com
+                    </p>
+                    <p>
+                        <i class="fas fa-phone mr-3"></i> 09 4217 681 15
+                    </p>
+                </div>
+
+                <hr class="w-100 clearfix d-md-none">
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold"> About Us</h6>
+                    <p>
+                        Dear readers, </br>
+                        We are selling of books in various classification of
+                        Romance, Contemporary, Families & Relationships, Adventure, Biographies, History etc.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row d-flex align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p class="text-center text-md-left">© 2020 Copyright:
+                        <span style="color: #007BFF; font-weight: bold;"> KaWi Book Shop </span>
+                    </p>
+                </div>
+
+                <div class="col-md-5 col-lg-4 ml-lg-0">
+                    <div class="text-center text-md-right">
+                        <ul class="list-unstyled list-inline">
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fab fa-google-plus-g"></i>
+                                </a>
+                            </li>
+
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!-- End Footer -->
+    </body>
+    <script src="../js/userprofile.js"> </script>
+</html>

@@ -1,0 +1,183 @@
+
+#title{
+    margin-left: 3%;
+}
+
+.emp-profile{
+    padding: 1%;
+    margin-top: 2%;
+    margin-bottom: 8%;
+    margin-left: 15%;
+    width: 70%;
+    border-radius: 0.5rem;
+    background:none;
+}
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 200px;
+    height: 170px;
+    border: 2px solid #e0d7ec;
+    border-radius: 10px;
+}
+.profile-img button {
+    position: relative;
+    overflow: hidden;
+    width: 250px;
+    border: none;
+    border-radius: 3px;
+    font-size: 15px;
+    font-weight: bold;
+    background: #212529b8;
+}
+
+.profile-info h3{
+    color: #333;
+    font-weight: bold;
+    margin-top: 20px;
+    align: center;
+}
+.profile-info h6{
+    color: #0062cc;
+}
+
+.history-tab p{
+    font-weight: none;
+    color: black;
+    margin-left: 3%;
+}
+
+.history-tab{
+    margin-left: 18%;
+    border-top: 3px double #665757;
+    margin-bottom: 30px;
+}
+
+.history-tab img{
+    border:none;
+}
+
+#purchased-books {
+    width: 85%;
+}
+
+#purchased-books h5{
+    margin-left: 52%;
+}
+
+#purchased-books-info p{
+    align: center;
+}
+
+table tr{
+    border-style: hidden;
+}
+
+/* =============> For Navbar <================= */
+
+#home{
+    font-size: 20px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+#home:hover{
+    color: blue;
+}
+
+#home-navbar{
+    background-color: #b8f2e8;
+    padding-top: 10px;
+    width: 100.7%;
+}
+
+#home-navbar #kawi{
+    font-size: 25px;
+    color: #0e054a;
+    font-weight: bolder;
+    margin-left: 30%;
+    font-family:"Raleway";
+    text-shadow: -1px 2px 1px blue;
+}
+
+#home-navbar #bshop{
+    color: #5E6164;
+    margin-top: -15px;
+    font-weight: bold;
+    margin-left: 40%;
+}
+
+#cart{
+    margin-top: 5px;
+    /* margin-left: 8%; */
+}
+
+#cart-count{
+    margin-top: 2px;
+    font-size: 22px;
+    color: green;
+    margin-right: 2px;
+}
+
+#cart p{
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 5px;
+    cursor: default;
+}
+
+#user{
+    margin-top: 5px;
+    margin-left: 50px;
+}
+
+#user img{
+    width: 33px;
+    height: 33px;
+    border: 1.5px solid #91a298;
+    border-radius: 15px;
+}
+
+#user ul{
+    position: absolute;
+    margin-left: -30px;
+    padding: 0;
+    z-index: 2;
+    width: 150px;
+    border: 2px solid #B8F2E8;
+    border-radius: 2px;
+    background: #F8F9FA;
+
+}
+
+#user ul li{
+    list-style: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 28px;
+    font-size: 16px;
+    cursor: default;
+}
+
+#user ul #signin:hover, #signup:hover, #profile:hover, #logout:hover{
+    color: blue;
+}
+
+#user p{
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: -15px;
+    cursor: default;
+}
+
+#cart:hover, #user p:hover, #user svg:hover{
+    color: blue;
+}
+
+.sticky{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}

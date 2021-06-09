@@ -1,0 +1,134 @@
+body {
+    /* font-family:"Raleway"; */
+}
+
+.popup-overlay {
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    z-index:2;
+    background:rgba(0,0,0,0.5);
+    display:none;
+}
+.popup {
+    position:fixed;
+    top:-150%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(1.15);
+    width:450px;
+    background:#f5f5f5;
+    z-index:2;
+    opacity:0;
+    box-shadow:5px 5px 3px rgba(0,0,0,0.2);
+    transition:transform 300ms ease-in-out,opacity 300ms ease-in-out;
+    border-radius:10px;
+}
+
+body.showLoginForm .popup-overlay {
+    display:block;
+}
+body.showLoginForm .popup {
+    top:50%;
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+    }
+
+body.showRegisterForm .popup-overlay {
+    display:block;
+}
+body.showRegisterForm .popup {
+    top:50%;
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+}
+
+.popup .popup-close {
+    position:absolute;
+    top: 0px;
+    right: 0px;
+    width:40px;
+    height:40px;
+    color:red;
+    font-size:30px;
+    font-weight:600;
+    text-align:center;
+    cursor:pointer;
+}
+.popup .form .avatar {
+    margin: -50px 0px 20px;
+    text-align:center;
+}
+.popup .form .avatar img {
+    width:120px;
+    border-radius:50%;
+}
+.popup .form .header {
+    text-align:center;
+    font-size:20px;
+    font-weight:600;
+    color:#222;
+    margin:20px 0px;
+}
+
+.popup .form .element {
+  padding:8px 20px;
+}
+
+.popup .form .element label {
+    display:block;
+    font-size:20px;
+    color:#222;
+    margin-bottom:5px;
+}
+
+.popup .form .element input {
+    width:100%;
+    padding:8px 10px;
+    box-sizing:border-box;
+    outline:none;
+    border:1px solid #aaa;
+    background:#eee;
+    border-radius:10px;
+}
+.popup .form .element button {
+    margin-top:20px;
+    width:40%;
+    padding:10px 0px;
+    text-transform:uppercase;
+    outline:none;
+    border:none;
+    font-size:15px;
+    font-weight:600;
+    border-radius:30px;
+    cursor:pointer;
+    background: blue;
+    color:#f5f5f5;
+    position:absolute;
+    transform:translate(60%);
+}
+
+.popup .login-register {
+    text-align:center;
+    font-size:13px;
+    font-weight:600;
+    color:#222;
+    margin:20px 0px;
+}
+
+.popup .login-register #login-register-here {
+    margin-top: 50px;
+    font-size:12px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #660080;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 350px){
+    .popup{
+        width: 40%;
+    }
+}

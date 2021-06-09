@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Cart</title>
+
+        <script src="https://checkout.stripe.com/v2/checkout.js"></script>
+        <script type="text/javascript" src="../js/main/jquery.js"> </script>
+        <script type="text/javascript" src="../js/main/jquery-confirm.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+        <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="../css/main/jquery-confirm.min.css">
+        <link rel="stylesheet" href="../css/cartlist.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+
+<!-- For Nav Bar -->
+    <div class="row" id="home-navbar">
+        <div class="col-2">
+            <p id="kawi"> KaWi</p>
+                <p id="bshop"> Book Shop <i class="fas fa-book-open"></i></p>
+        </div>
+        <div class="col-6">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <span class="navbar-brand" id="home" href="home.html"> KAWI HOME</span>
+                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> -->
+                    <!-- <span class="navbar-toggler-icon"></span> -->
+                </button>
+            </nav>
+        </div>
+        <span id="cart-count"> 0 </span>
+        <div id="cart">
+            <i class="fas fa-cart-plus fa-2x"></i>
+            <p> Cart </p>
+        </div>
+        <div class ="dropdown" id="user">
+            <img src="" hidden>
+            <span> <i class="fas fa-user-circle fa-2x"> </i> </span>
+            <p> Account </p>
+            <ul style="display: none;">
+                <li id="signin"> <i class="fas fa-sign-in-alt"></i> Login </li>
+                <li id="signup"> <i class="fas fa-user-plus"></i> Sign Up </li>
+                <li id="profile"> <i class="fas fa-user-alt"></i> Profile </li>
+                <li id="logout"> <i class="fas fa-sign-out-alt"></i> Logout </li>
+            </ul>
+        </div>
+    </div>
+
+<!-- Shopping Cart List -->
+        <div class="shopping-cart">
+            <div class="cart-title">
+                <h4> Your cart list </h4>
+            </div>
+            <div class="column-labels">
+                <label class="product-image"> Image </label>
+                <label class="product-details">Product</label>
+                <label class="product-price">Price</label>
+                <label class="product-quantity">Quantity</label>
+                <label class="product-line-price">Total</label>
+            </div>
+
+            <body onload="loadCartData()">
+                <div id="cart-list"></div>
+                <button class="go-shopping" onclick="saveChangesCart()"> Save change </button>
+                <div class="totals">
+                    <div class="totals-item">
+                        <label> Tax </label>
+                        <div class="totals-value" id="cart-tax"> </div>
+                        <label> Subtotal </label>
+                        <div class="totals-value" id="cart-subtotal"> </div>
+                        <label> Grand Total </label>
+                        <div class="totals-value" id="cart-grandtotal"> </div>
+                    </div>
+                </div>
+            </body>
+        </div>
+        <div id="delivery-info">
+            <table class="table">
+                <tr>
+                    <th><label>Address </label></th>
+                    <td><input type="text" class="form-control" id="delivery-address" placeholder="Enter your address"required></td>
+                </tr>
+                <tr>
+                    <th><label>Phone </label></th>
+                    <td><input type="text" class="form-control" id="delivery-phone" maxlength="11" placeholder="Enter your phone number" required></td>
+                </tr>
+            </table>
+        </div>
+        <button class="ordered" onclick="checkOut()"> Checkout </button>
+
+<!-- End Shooping Cart List -->
+
+        <div class="empty-cart" hidden>
+            <h2 align="center">
+                <strong> Your cart is currently empty. </strong>
+                <br> <br>
+                <a href="home.html">
+                    <button class="btn btn-primary" style="margin-bottom: 16.5%;"> Go to Home</button>
+                </a>
+            </h2>
+        </div>
+
+<!-- For Footer -->
+        <!-- <footer class="page-footer font-small mdb-color pt-4 text-white bg-dark" style="border-top-style: solid; border-color: white; margin-left: -1%;margin-right: -1.6%;"> -->
+        <footer class="page-footer font-small mdb-color pt-4 text-white bg-dark" style="margin-top: 135px; margin-left: -1%;margin-right: -1.6%; display: none">
+            <div class="container text-center text-md-left text-white bg-dark">
+                <div class="row text-center text-md-left mt-3 pb-3 text-white bg-dark">
+                    <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Developed By:</h6>
+                        <p>
+                            <strong>
+                                <a href="https://beedatamyanmar.com/">
+                                    BEE Data Myanmar Software Solution 2020 Internship Program
+                                </a>
+                            </strong>
+                        </p>
+                    </div>
+
+                    <hr class="w-100 clearfix d-md-none">
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                        <p>
+                            <i class="fas fa-home mr-3"></i> Hlaing Township, Yangon.
+                        </p>
+                        <p>
+                            <i class="fas fa-envelope mr-3"></i> kawibookshop@gmail.com
+                        </p>
+                        <p>
+                            <i class="fas fa-phone mr-3"></i> 09 4217 681 15
+                        </p>
+                    </div>
+
+                    <hr class="w-100 clearfix d-md-none">
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold"> About Us</h6>
+                        <p>
+                            Dear readers, </br>
+                            We are selling of books in various classification of
+                            Romance, Contemporary, Families & Relationships, Adventure, Biographies, History etc.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-7 col-lg-8">
+                        <p class="text-center text-md-left">© 2020 Copyright:
+                            <span style="color: #007BFF; font-weight: bold;"> KaWi Book Shop </span>
+                        </p>
+                    </div>
+
+                    <div class="col-md-5 col-lg-4 ml-lg-0">
+                        <div class="text-center text-md-right">
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item">
+                                    <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+
+                                <li class="list-inline-item">
+                                    <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                </li>
+
+                                <li class="list-inline-item">
+                                    <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                        <i class="fab fa-google-plus-g"></i>
+                                    </a>
+                                </li>
+
+                                <li class="list-inline-item">
+                                    <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+<!-- End Footer -->
+    </body>
+    <script src="../js/cartlist.js"> </script>
+</html>
